@@ -1,0 +1,124 @@
+<!DOCTYPE html> <!--tipe dokumen-->
+<html lang="en"> <!--bahasa yang digunakan pada html -->
+<head>
+    <meta charset="UTF-8"> <!-- digunakan untuk mendukung banyak karakter dan alfabet -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--untuk menyesuaikan tampilan halaman sesuai dengan perangkat pengguna-->
+    <title>Form Registrasi</title> <!--Dibuat untuk nama halaman web-->
+    <style>   /* untuk membuat tampilan input box menjadi lurus sejajar satu sama lain */
+        label {
+        display: inline-block;
+        width: px;
+        margin-right: px; 
+        
+        }
+    </style>
+</head>
+<body> <!-- isi dari halaman web form-->
+    <h1>Form Registrasi</h1> <!-- sebagai judul heading1 di halaman web-->
+    <form action="#" method="POST" enctype="multipart/form-data"> <!-- menentukan URL tujuan untuk mengirimkan data form -->
+        <fieldset> <!-- untuk mengelompokkan isi konten dari biodata -->
+            <legend>Biodata</legend> <!--untuk memberikan keterangan untuk kelompok yang berada dalam fieldset-->
+            <label for="nama">Nama Mahasiswa:</label> <!--keterangan nama mahasiswa-->
+            <input type="text" id="nama" name="nama" required><br><br> <!--untuk menginputkan nama user, required sebagai pengingat untuk user wajib diisi sebelum dikirim-->
+            
+            <label for="nim">No Induk Mahasiswa (NIM):</label> <!--keterangan NIM-->
+            <input type="text" id="nim" name="nim" required><br><br> <!--untuk menginputkan NIM user, required sebagai pengingat untuk user wajib diisi sebelum dikirim-->
+            
+            <label for="alamat">Alamat Mahasiswa:</label> <!--keterangan alamat mahasiswa-->
+            <input type="text" id="alamat" name="alamat" required><br><br> <!--untuk input alamat user, required sebagai pengingat untuk user wajib diisi sebelum dikirim-->
+            
+            <label for="tgl_lahir">Tanggal Lahir:</label> <!--keterangan Tanggal lahir-->
+            <select id="tgl_lahir_day" name="tgl_lahir_day" required> <!-- untuk memilih hari dari tanggal lahir-->
+                <option value="" disabled selected>Hari</option>
+                <!-- pilihan untuk tanggal lahir -->
+                <?php for ($i = 1; $i <= 31; $i++) { ?>
+                    <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                <?php } ?>
+            </select>
+            <select id="tgl_lahir_month" name="tgl_lahir_month" required> <!-- untuk memilih bulan lahir-->
+                <option value="" disabled selected>Bulan</option>
+                <!-- pilihan berupa drop-down untuk bulan  -->
+                <?php 
+                    $months = array(
+                        "Januari", "Februari", "Maret", "April", "Mei", "Juni",
+                        "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+                    );
+                ?>
+                <?php foreach ($months as $key => $month) { ?>
+                    <option value="<?php echo $key + 1; ?>"><?php echo $month; ?></option>
+                <?php } ?>
+            </select>
+            <select id="tgl_lahir_year" name="tgl_lahir_year" required> <!-- untuk memilih bulan lahir-->
+                <option value="" disabled selected>Tahun</option>
+                <!-- pilihan berupa drop-down untuk tahun -->
+                <?php 
+                    $currentYear = date('Y');
+                    $startYear = $currentYear - 50;
+                    for ($i = $currentYear; $i >= $startYear; $i--) { ?>
+                    <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                <?php } ?>
+            </select><br><br>
+            
+            <label for="jenis_kelamin">Jenis Kelamin:</label> <!--untuk memilih jenis kelamin user-->
+            <input type="radio" id="pria" name="jenis_kelamin" value="Pria" required> <!--input data menggunakan radio karena user hanya dapat memilih salah satu pilihan-->
+            <label for="pria">Pria</label>
+            <input type="radio" id="wanita" name="jenis_kelamin" value="Wanita" required>
+            <label for="wanita">Wanita</label><br><br>
+            
+            <label for="foto">Upload Foto:</label> <!--keterangan upload foto-->
+            <input type="file" id="foto" name="foto" required><br><br> <!--untuk mengupload foto yang berada dalam internal file user, required sebagai pengingat untuk user wajib diisi sebelum dikirim-->
+            
+            <label for="url_website">URL Website:</label> <!--keterangan url website -->
+            <input type="url" id="url_website" name="url_website"><br><br>
+            
+            <label for="perguruan_tinggi">Perguruan Tinggi:</label>  <!--keterangan perguruan tinggi-->
+            <input type="text" id="perguruan_tinggi" name="perguruan_tinggi" required><br><br> <!--untuk menginputkan perguruan tinggi, required sebagai pengingat untuk user wajib diisi sebelum dikirim-->
+            
+        </fieldset>
+        
+        <fieldset>  <!-- untuk mengelompokkan isi konten dari info akun -->
+            <legend>Info Akun</legend> <!--untuk memberikan keterangan untuk kelompok yang berada dalam fieldset-->
+            <label for="email">Email:</label> <!--keterangan email-->
+            <input type="email" id="email" name="email" required><br><br> <!--untuk menginputkan email user, required sebagai pengingat untuk user wajib diisi sebelum dikirim-->
+            
+            <label for="username">Username:</label> <!--keterangan Username-->
+            <input type="text" id="username" name="username" required><br><br> <!--untuk username user, required sebagai pengingat untuk user wajib diisi sebelum dikirim-->
+            
+            <label for="password">Password:</label> <!--keterangan password-->
+            <input type="password" id="password" name="password" required><br><br> <!--untuk menginputkan password user, required sebagai pengingat untuk user wajib diisi sebelum dikirim-->
+            
+            <label for="confirm_password">Ulangi Password:</label> <!--keterangan ulangi password-->
+            <input type="password" id="confirm_password" name="confirm_password" required><br><br> <!--untuk menginputkan ulang password user, required sebagai pengingat untuk user wajib diisi sebelum dikirim-->
+        </fieldset>
+
+        <fieldset>  <!-- untuk mengelompokkan isi konten dari kemampuan dasar -->
+            <legend>Kemampuan Dasar</legend> <!--untuk memberikan keterangan untuk kelompok yang berada dalam fieldset-->
+            <input type="checkbox" id="html" name="html"> <!-- checkbox bisa digunakan untuk memilih option yang multiple choice/lebih dari satu jawaban-->
+            <label for="html">HTML</label>
+            
+            <input type="checkbox" id="css" name="css">
+            <label for="css">CSS</label>
+            
+            <input type="checkbox" id="javascript" name="javascript">
+            <label for="javascript">Javascript</label>
+            
+            <input type="checkbox" id="php" name="php">
+            <label for="php">PHP</label>
+            
+            <input type="checkbox" id="mysql" name="mysql">
+            <label for="mysql">MySQL</label>
+            
+            <input type="checkbox" id="laravel" name="laravel">
+            <label for="laravel">Laravel</label>
+            
+            <input type="checkbox" id="react_native" name="react_native">
+            <label for="react_native">React Native</label>
+        </fieldset>
+
+        <input type="reset" value="Reset"> <!-- menampilkan tombol reset, ketika ditekan akan mereset value dalam form -->
+        <input type="submit" value="Simpan"> <!-- menampilkan tombol simpan, ketika ditekan akan mengirimkan form ke server u/ di proses -->
+        <input type="button" value="Button" onclick=""> <!--menampilkan tombol button, ketika ditekan atribut onclick tidak memiliki nilai-->
+        
+    </form>
+</body>
+</html>
